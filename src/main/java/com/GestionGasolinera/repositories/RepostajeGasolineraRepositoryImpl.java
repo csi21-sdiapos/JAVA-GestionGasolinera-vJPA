@@ -13,139 +13,139 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.GestionGasolinera.entities.RepostajeVehiculo;
+import com.GestionGasolinera.entities.RepostajeGasolinera;
 
 
-@Repository("RepostajeVehiculoRepositoryImpl")
-public class RepostajeVehiculoRepositoryImpl implements IRepostajeVehiculoRepository {
+@Repository("RepostajeGasolineraRepositoryImpl")
+public class RepostajeGasolineraRepositoryImpl implements IRepostajeGasolineraRepository {
 
 	
 	/** The entity manager factory. */
 	// @PersistenceContext(unitName = "GestionGasolinera", type = PersistenceContextType.EXTENDED)
 	@PersistenceUnit(name = "GestionGasolinera")
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("GestionGasolinera");
-	
+
 	
 	
 	/**
-	 * List repostaje vehiculo.
+	 * List repostaje gasolinera.
 	 *
 	 * @return the list
 	 * @throws Exception the exception
 	 */
 	@Override
-	public List<RepostajeVehiculo> listRepostajeVehiculo() throws Exception {
+	public List<RepostajeGasolinera> listRepostajeGasolinera() throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-						
+								
 		// the lowercase c refers to the object
 		// :objectID is a parameterized query thats value is set below
-		String query = "SELECT rv FROM RepostajeVehiculo rv WHERE rv.id IS NOT NULL";
-		    	
+		String query = "SELECT rg FROM RepostajeGasolinera rg WHERE rg.id IS NOT NULL";
+				    	
 		// Issue the query and get a matching object
-		TypedQuery<RepostajeVehiculo> typedQuery = entityManager.createQuery(query, RepostajeVehiculo.class);
-		List<RepostajeVehiculo> listaRepostajesVehiculo = new ArrayList<>();
-		
+		TypedQuery<RepostajeGasolinera> typedQuery = entityManager.createQuery(query, RepostajeGasolinera.class);
+		List<RepostajeGasolinera> listaRepostajesGasolinera = new ArrayList<>();
+				
 		try {
 			// Get matching objects and output
-			listaRepostajesVehiculo = typedQuery.getResultList();
+			listaRepostajesGasolinera = typedQuery.getResultList();
 		}
-		    	
+				    	
 		catch(NoResultException ex) {
 			ex.printStackTrace();
 		}
-		    	
-		finally {
-			// Close EntityManager
-			// entityManager.flush();
-			// entityManager.clear();
-		    entityManager.close();
-		}
-		    	
-		return listaRepostajesVehiculo;
-	}
-
-
-
-	/**
-	 * Find by id repostaje vehiculo.
-	 *
-	 * @param repostajeVehiculo_id the repostaje vehiculo id
-	 * @return the repostaje vehiculo
-	 * @throws Exception the exception
-	 */
-	@Override
-	public RepostajeVehiculo findByIdRepostajeVehiculo(long repostajeVehiculo_id) throws Exception {
-		// The EntityManager class allows operations such as create, read, update, delete
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-						
-		// the lowercase a refers to the object
-		// :objectID is a parameterized query thats value is set below
-		String query = "SELECT rv FROM RepostajeVehiculo rv WHERE rv.id = :repostajeVehiculoID";
-		    	
-		// Issue the query and get a matching object
-		TypedQuery<RepostajeVehiculo> typedQuery = entityManager.createQuery(query, RepostajeVehiculo.class);
-		typedQuery.setParameter("repostajeVehiculoID", repostajeVehiculo_id);
-		    	
-		RepostajeVehiculo repostajeVehiculo = new RepostajeVehiculo();
-		    	
-		try {
-			// Get matching the object and output
-		    repostajeVehiculo = typedQuery.getSingleResult();		    		
-		}
-		
-		catch(NoResultException e) {
-			e.printStackTrace();
-		}
-		    	
+				    	
 		finally {
 			// Close EntityManager
 			// entityManager.flush();
 			// entityManager.clear();
 			entityManager.close();
 		}
-		    	
-		return repostajeVehiculo;
+				    	
+		return listaRepostajesGasolinera;
 	}
 
 	
 	
 	/**
-	 * Insert repostaje vehiculo.
+	 * Find by id repostaje gasolinera.
 	 *
-	 * @param repostajeVehiculo the repostaje vehiculo
+	 * @param repostajeGasolinera_id the repostaje gasolinera id
+	 * @return the repostaje gasolinera
 	 * @throws Exception the exception
 	 */
 	@Override
-	public void insertRepostajeVehiculo(RepostajeVehiculo repostajeVehiculo) throws Exception {
+	public RepostajeGasolinera findByIdRepostajeGasolinera(long repostajeGasolinera_id) throws Exception {
+		// The EntityManager class allows operations such as create, read, update, delete
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+								
+		// the lowercase a refers to the object
+		// :objectID is a parameterized query thats value is set below
+		String query = "SELECT rg FROM RepostajeGasolinera rg WHERE rg.id = :repostajeGasolineraID";
+				    	
+		// Issue the query and get a matching object
+		TypedQuery<RepostajeGasolinera> typedQuery = entityManager.createQuery(query, RepostajeGasolinera.class);
+		typedQuery.setParameter("repostajeGasolineraID", repostajeGasolinera_id);
+				    	
+		RepostajeGasolinera repostajeGasolinera = new RepostajeGasolinera();
+				    	
+		try {
+			// Get matching the object and output
+			repostajeGasolinera = typedQuery.getSingleResult();		    		
+		}
+		
+		catch(NoResultException e) {
+			e.printStackTrace();
+		}
+				    	
+		finally {
+			// Close EntityManager
+			// entityManager.flush();
+			// entityManager.clear();
+			entityManager.close();
+		}
+				    	
+		return repostajeGasolinera;
+	}
+
+	
+	
+	/**
+	 * Insert repostaje gasolinera.
+	 *
+	 * @param repostajeGasolinera the repostaje gasolinera
+	 * @throws Exception the exception
+	 */
+	@Override
+	public void insertRepostajeGasolinera(RepostajeGasolinera repostajeGasolinera) throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// Used to issue transactions on the EntityManager
 		EntityTransaction entityTransaction = null;
-				 
+						 
 		try {
 			// Get transaction and start
-		    entityTransaction = entityManager.getTransaction();
-		    entityTransaction.begin();
-		 
-		    // Save the object
-		    // entityManager.persist(repostajeVehiculo);
-		    entityManager.merge(repostajeVehiculo);		// https://www.baeldung.com/hibernate-detached-entity-passed-to-persist
-		    entityTransaction.commit();
-		            
+			entityTransaction = entityManager.getTransaction();
+			entityTransaction.begin();
+				 
+			// Save the object
+			// entityManager.persist(repostajeGasolinera);
+			entityManager.merge(repostajeGasolinera);		// https://www.baeldung.com/hibernate-detached-entity-passed-to-persist
+			entityTransaction.commit();
+				            
 		} catch (Exception ex) {
 			// If there is an exception rollback changes
-		    if (entityTransaction != null) {
-		    	entityTransaction.rollback();
-		    }
-		            
-		    ex.printStackTrace();
-		        
+			if (entityTransaction != null) {
+				entityTransaction.rollback();
+			}
+				            
+			ex.printStackTrace();
+				        
 		} finally {
 			// Close EntityManager
 			// entityManager.flush();
 			// entityManager.clear();
-		    entityManager.close();
+			entityManager.close();
 		}
 	}
 	

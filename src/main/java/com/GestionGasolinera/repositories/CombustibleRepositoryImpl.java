@@ -41,7 +41,7 @@ public class CombustibleRepositoryImpl implements ICombustibleRepository{
     	// :objectID is a parameterized query thats value is set below
     	String query = "SELECT c FROM Combustible c WHERE c.id IS NOT NULL";
     	
-    	// Issue the query and get a matching Customer
+    	// Issue the query and get a matching object
     	TypedQuery<Combustible> typedQuery = entityManager.createQuery(query, Combustible.class);
     	List<Combustible> listaCombustibles = new ArrayList<>();
     	
@@ -82,7 +82,7 @@ public class CombustibleRepositoryImpl implements ICombustibleRepository{
     	// :objectID is a parameterized query thats value is set below
     	String query = "SELECT c FROM Combustible c WHERE c.id = :combustibleID";
     	
-    	// Issue the query and get a matching Customer
+    	// Issue the query and get a matching object
     	TypedQuery<Combustible> typedQuery = entityManager.createQuery(query, Combustible.class);
     	typedQuery.setParameter("combustibleID", combustible_id);
     	

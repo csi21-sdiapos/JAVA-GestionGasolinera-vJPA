@@ -47,4 +47,17 @@ public interface IRepostajeGasolineraQuery {
 
 	// no se debe de poder eliminar un registro
 	// public boolean eliminarRepostajeGasolineraPorId(long repostajeGasolinera_id) throws Exception;
+	
+	
+	
+	// En caso de que un operario se equivoque al introducir los datos del llenado de depósito, existe la posibilidad de eliminar el último que se ha realizado.
+	/**
+	 * Eliminar ultimo repostaje gasolinera.
+	 *
+	 * @param repostajeGasolinera the repostaje gasolinera
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
+	public boolean eliminarUltimoRepostajeGasolinera(RepostajeGasolinera repostajeGasolinera) throws Exception;
+	
 }

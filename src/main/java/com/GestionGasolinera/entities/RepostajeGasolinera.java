@@ -48,16 +48,15 @@ public class RepostajeGasolinera implements Serializable {
 	
 	@Column(name = "repostajeGasolinera_litros", unique = false, nullable = false)
 	private double repostajeGasolinera_litros;
-/*
-	@Column(name = "repostajeGasolinera_combustible", unique = false, nullable = false, length = 11) // con una longitud de 11 se podría llegar a escribir como máximo Gasolina 95 o Gasolina 98
-	private String repostajeGasolinera_combustible;
-*/
+
 	@Column(name = "repostajeGasolinera_importeTotal", unique = false, nullable = false)
 	private double repostajeGasolinera_importeTotal;
 
 	
 	/******************************************* RELACIONES *********************************************/
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception
+	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	
+	// si se prefiere configurar como optional=false, después de asociar un combustible a un repostaje (en la creación del repostaje) no podremos después eliminar ese repostaje
+	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception
 	private Combustible combustible;
 	
 	/******************************************* CONSTRUCTORES *********************************************/

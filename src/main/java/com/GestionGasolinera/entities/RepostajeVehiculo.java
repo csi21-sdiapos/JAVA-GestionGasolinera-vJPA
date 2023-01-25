@@ -53,7 +53,9 @@ public class RepostajeVehiculo implements Serializable {
 	private double repostajeVehiculo_importeTotal;
 	
 	/******************************************* RELACIONES *********************************************/
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception
+	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	
+	// si se prefiere configurar como optional=false, después de asociar un combustible a un repostaje (en la creación del repostaje) no podremos después eliminar ese repostaje
+	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception	// // Caused by: org.postgresql.util.PSQLException: ERROR: update o delete en �dwh_gg_combustibles� viola la llave for�nea �fkadp52mjb688ijko6tnifl2nmr� en la tabla �dwh_gg_repostaje_gasolinera�:  Detail: La llave (combustible_id)=(3) todav�a es referida desde la tabla �dwh_gg_repostaje_gasolinera�.
 	private Combustible combustible;
 	
 	
@@ -61,8 +63,7 @@ public class RepostajeVehiculo implements Serializable {
 	// constructor lleno, el cual sería para la factura
 	// sin el id, ni el uuid, ni la fecha-hora, porque son automáticos 
 	// y sin el importe total, ya que éste se calcula con un método (litros * combustible.precio)
-	public RepostajeVehiculo(String repostajeVehiculo_dni, String repostajeVehiculo_matricula, double repostajeVehiculo_litros, Combustible combustible
-	) {
+	public RepostajeVehiculo(String repostajeVehiculo_dni, String repostajeVehiculo_matricula, double repostajeVehiculo_litros, Combustible combustible) {
 		super();
 		this.repostajeVehiculo_uuid = Tools.generarUUID();
 		this.repostajeVehiculo_date = Calendar.getInstance();

@@ -148,5 +148,52 @@ public class RepostajeGasolineraRepositoryImpl implements IRepostajeGasolineraRe
 			entityManager.close();
 		}
 	}
+
+
+
+	/**
+	 * Delete last repostaje gasolinera.
+	 *
+	 * @param repostajeGasolinera the repostaje gasolinera
+	 * @throws Exception the exception
+	 */
+	@Override
+	public void deleteLastRepostajeGasolinera(RepostajeGasolinera repostajeGasolinera) throws Exception {
+		// The EntityManager class allows operations such as create, read, update, delete
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		// Used to issue transactions on the EntityManager
+		EntityTransaction entityTransaction = null;
+		 
+		try {
+			entityTransaction = entityManager.getTransaction();
+		    entityTransaction.begin();
+		            
+		    // entityManager.remove(repostajeGasolinera);
+		    // java.lang.IllegalArgumentException: Removing a detached instance com.GestionGasolinera.entities.RepostajeGasolinera#4
+		    // https://stackoverflow.com/questions/17027398/java-lang-illegalargumentexception-removing-a-detached-instance-com-test-user5
+		    
+		    entityManager.remove(entityManager.contains(repostajeGasolinera) ? repostajeGasolinera : entityManager.merge(repostajeGasolinera));
+		    
+		    // u otra forma más sencilla de hacer lo de la sentencia de antes sería esta:
+		    // RepostajeGasolinera repostajeGasolineraEliminar = entityManager.merge(repostajeGasolinera);
+		    // entityManager.remove(repostajeGasolineraEliminar);
+		    
+		    entityTransaction.commit();
+		    
+		} catch (Exception ex) {
+		    // If there is an exception rollback changes
+			if (entityTransaction != null) {
+				entityTransaction.rollback();
+		    }
+		            
+		    ex.printStackTrace();
+		        
+		} finally {
+			// Close EntityManager
+		    // entityManager.flush();
+		    // entityManager.clear();
+		    entityManager.close();
+		}
+	}
 	
 }

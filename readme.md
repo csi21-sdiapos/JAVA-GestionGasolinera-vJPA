@@ -1,5 +1,27 @@
 # Ejercicio Gestión Gasolinera
 
+- [Ejercicio Gestión Gasolinera](#ejercicio-gestión-gasolinera)
+  - [Enunciado](#enunciado)
+  - [Esquema Arquitectura Ejercicio](#esquema-arquitectura-ejercicio)
+  - [Esquema General de Arquitectura Web (vProfesor)](#esquema-general-de-arquitectura-web-vprofesor)
+  - [Three Tier (Three Layer) Architecture VS MVC Pattern](#three-tier-three-layer-architecture-vs-mvc-pattern)
+  - [How to use Three-layer architecture in Spring MVC web applications](#how-to-use-three-layer-architecture-in-spring-mvc-web-applications)
+  - [Tabla de los combustibles](#tabla-de-los-combustibles)
+  - [Webgrafía](#webgrafía)
+    - [Three Tier (Three Layer) Architecture in Spring MVC Web Application](#three-tier-three-layer-architecture-in-spring-mvc-web-application)
+    - [How to configure persistence.xml file - Beginner’s Guide to JPA’s persistence.xml](#how-to-configure-persistencexml-file---beginners-guide-to-jpas-persistencexml)
+    - [How to generate a UUID](#how-to-generate-a-uuid)
+    - [Calendar Class in Java with examples](#calendar-class-in-java-with-examples)
+    - [PersistenceUnit vs PersistenceContext (Stackoverflow discussion)](#persistenceunit-vs-persistencecontext-stackoverflow-discussion)
+    - [Entity Manager \& Persistence Context (and type = PersistenceContextType)](#entity-manager--persistence-context-and-type--persistencecontexttype)
+  - [Solución de errores](#solución-de-errores)
+    - [OJO con la versión de Hibernate](#ojo-con-la-versión-de-hibernate)
+    - [Hibernate’s “Detached Entity Passed to Persist” Error](#hibernates-detached-entity-passed-to-persist-error)
+    - [How to remove a detached instance (Stackoverflow discussion)](#how-to-remove-a-detached-instance-stackoverflow-discussion)
+    - [@OneToMany/@ManyToOne(fetch = FetchType.EAGER) - Hibernate could not initialize proxy – no Session](#onetomanymanytoonefetch--fetchtypeeager---hibernate-could-not-initialize-proxy--no-session)
+  - [Prueba de Ejecución](#prueba-de-ejecución)
+
+
 ## Enunciado
 
 Desarrollar una aplicación para la gestión de una gasolinera. 
@@ -93,5 +115,13 @@ Si incurrimos en este error, para solucionarlo, podemos elegir hacer uno de esto
   
 https://www.baeldung.com/hibernate-detached-entity-passed-to-persist
 
+### How to remove a detached instance (Stackoverflow discussion)
+https://stackoverflow.com/questions/17027398/java-lang-illegalargumentexception-removing-a-detached-instance-com-test-user5
+
 ### @OneToMany/@ManyToOne(fetch = FetchType.EAGER) - Hibernate could not initialize proxy – no Session
 https://www.baeldung.com/hibernate-initialize-proxy-exception
+
+
+## Prueba de Ejecución
+
+[Prueba de ejecución Gestión Gasolinera](https://user-images.githubusercontent.com/91122596/214709362-73bcf02d-e273-4b89-ac5e-e6a413752de3.mp4)

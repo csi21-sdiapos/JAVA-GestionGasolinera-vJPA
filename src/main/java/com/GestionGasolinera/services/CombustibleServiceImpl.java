@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
+import com.GestionGasolinera.dtos.IToDAO;
+import com.GestionGasolinera.dtos.IToDTO;
+import com.GestionGasolinera.dtos.ToDaoServiceImpl;
+import com.GestionGasolinera.dtos.ToDtoServiceImpl;
 import com.GestionGasolinera.entities.Combustible;
 import com.GestionGasolinera.queries.CombustibleQueryImpl;
 import com.GestionGasolinera.queries.ICombustibleQuery;
@@ -19,6 +23,12 @@ public class CombustibleServiceImpl implements ICombustibleService {
 	
 	/** The combustible query impl. */
 	ICombustibleQuery combustibleQueryImpl = new CombustibleQueryImpl();
+	
+	/** The to dto service impl. */
+	IToDTO toDtoServiceImpl = new ToDtoServiceImpl();
+	
+	/** The to dao service impl. */
+	IToDAO toDaoServiceImpl = new ToDaoServiceImpl();
 	
 
 	
@@ -89,6 +99,14 @@ public class CombustibleServiceImpl implements ICombustibleService {
 		System.out.print("\n\nIntroduzca el precio del nuevo combustible:\t");
 		double combustible_precio = scanner.nextDouble();
 		
+		/************************************ prueba de DTO **********************************/
+		// CombustibleDTO combustibleDTO = toDtoServiceImpl.toCombustibleDTO(combustible_nombre, combustible_precio);
+		// Combustible combustible = toDaoServiceImpl.combustibleDTOtoCombustibleDAO(combustibleDTO);
+		// combustibleQueryImpl.insertarCombustible(combustible);
+		// Caused by: org.postgresql.util.PSQLException: ERROR: 
+		// llave duplicada viola restricci�n de unicidad �dwh_gg_combustibles_pkey� Detail: Ya existe la llave (combustible_id)=(2).
+		/*************************************************************************************/
+		
 		combustibleQueryImpl.insertarCombustible(new Combustible(combustible_nombre, combustible_precio));
 		System.out.println("\n\nEl nuevo combustible " + combustible_nombre + " se ha creado correctamente");
 	}
@@ -127,7 +145,7 @@ public class CombustibleServiceImpl implements ICombustibleService {
 		System.out.print("\n\nVamos a eliminar un combustible");
 		Combustible combustible = seleccionarUnCombustible();
 		
-		if (Tools.preguntaSiNo("¿Está seguro de que desea eliminar el combustible seleccionado ?")) { // ¿por qué no me funciona bien este método?
+		if (Tools.preguntaSiNo("¿Está seguro de que desea eliminar el combustible seleccionado?")) { // ¿por qué no me funciona bien este método?
 			combustibleQueryImpl.eliminarCombustible(combustible);
 			System.out.println("\n\nEl combustible seleccionado se ha eliminado correctamente");
 		}

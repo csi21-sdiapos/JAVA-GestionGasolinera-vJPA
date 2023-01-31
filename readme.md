@@ -1,25 +1,5 @@
 # Ejercicio Gestión Gasolinera
 
-- [Ejercicio Gestión Gasolinera](#ejercicio-gestión-gasolinera)
-  - [Enunciado](#enunciado)
-  - [Esquema Arquitectura Ejercicio](#esquema-arquitectura-ejercicio)
-  - [Esquema General de Arquitectura Web (vProfesor)](#esquema-general-de-arquitectura-web-vprofesor)
-  - [Three Tier (Three Layer) Architecture VS MVC Pattern](#three-tier-three-layer-architecture-vs-mvc-pattern)
-  - [How to use Three-layer architecture in Spring MVC web applications](#how-to-use-three-layer-architecture-in-spring-mvc-web-applications)
-  - [Tabla de los combustibles](#tabla-de-los-combustibles)
-  - [Webgrafía](#webgrafía)
-    - [Three Tier (Three Layer) Architecture in Spring MVC Web Application](#three-tier-three-layer-architecture-in-spring-mvc-web-application)
-    - [How to configure persistence.xml file - Beginner’s Guide to JPA’s persistence.xml](#how-to-configure-persistencexml-file---beginners-guide-to-jpas-persistencexml)
-    - [How to generate a UUID](#how-to-generate-a-uuid)
-    - [Calendar Class in Java with examples](#calendar-class-in-java-with-examples)
-    - [PersistenceUnit vs PersistenceContext (Stackoverflow discussion)](#persistenceunit-vs-persistencecontext-stackoverflow-discussion)
-    - [Entity Manager \& Persistence Context (and type = PersistenceContextType)](#entity-manager--persistence-context-and-type--persistencecontexttype)
-  - [Solución de errores](#solución-de-errores)
-    - [OJO con la versión de Hibernate](#ojo-con-la-versión-de-hibernate)
-    - [Hibernate’s “Detached Entity Passed to Persist” Error](#hibernates-detached-entity-passed-to-persist-error)
-    - [How to remove a detached instance (Stackoverflow discussion)](#how-to-remove-a-detached-instance-stackoverflow-discussion)
-    - [@OneToMany/@ManyToOne(fetch = FetchType.EAGER) - Hibernate could not initialize proxy – no Session](#onetomanymanytoonefetch--fetchtypeeager---hibernate-could-not-initialize-proxy--no-session)
-  - [Prueba de Ejecución](#prueba-de-ejecución)
 
 
 ## Enunciado
@@ -108,7 +88,7 @@ Las versiones de hibernate más actuales me han dado errores.
 Este ejercicio lo he conseguido hacer con la versión de Hibernate 5.6.12.Final.
 
 ### Hibernate’s “Detached Entity Passed to Persist” Error
-Si incurrimos en este error, para solucionarlo, podemos elegir hacer uno de estos dos cambios:
+Para solucionar este error, podemos hacer estos dos cambios:
 
 - @ManyToOne(cascade = CascadeType.ALL)	   -->	@ManyToOne(cascade = CascadeType.MERGE)
 - entityManager.persist(repostajeVehiculo) -->  entityManager.merge(repostajeVehiculo)

@@ -54,7 +54,7 @@ public class RepostajeGasolinera implements Serializable {
 
 	
 	/******************************************* RELACIONES *********************************************/
-	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	
+	@ManyToOne(optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)	
 	// si se prefiere configurar como optional=false, después de asociar un combustible a un repostaje (en la creación del repostaje) no podremos después eliminar ese repostaje
 	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception
 	private Combustible combustible;

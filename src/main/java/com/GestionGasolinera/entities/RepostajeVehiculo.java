@@ -53,7 +53,7 @@ public class RepostajeVehiculo implements Serializable {
 	private double repostajeVehiculo_importeTotal;
 	
 	/******************************************* RELACIONES *********************************************/
-	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)	
+	@ManyToOne(optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)	
 	// si se prefiere configurar como optional=false, después de asociar un combustible a un repostaje (en la creación del repostaje) no podremos después eliminar ese repostaje
 	// si se prefiere configurar como carga perezosa (FetchType.LAZY), cuidado con incurrir en este error: https://www.baeldung.com/hibernate-initialize-proxy-exception	// // Caused by: org.postgresql.util.PSQLException: ERROR: update o delete en �dwh_gg_combustibles� viola la llave for�nea �fkadp52mjb688ijko6tnifl2nmr� en la tabla �dwh_gg_repostaje_gasolinera�:  Detail: La llave (combustible_id)=(3) todav�a es referida desde la tabla �dwh_gg_repostaje_gasolinera�.
 	private Combustible combustible;
